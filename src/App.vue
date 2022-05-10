@@ -1,11 +1,14 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <SideNavigation />
   <router-view />
 </template>
-
+<script>
+import SideNavigation from "@/components/SideNavigation.vue";
+export default {
+  setup() {},
+  components: { SideNavigation },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
