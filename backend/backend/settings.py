@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = ["http://localhost:8080", "http://127.0.0.1:8000", ]
 
 # Application definition
 
@@ -37,17 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'corsheaders',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -80,11 +86,11 @@ DATABASES = {
         #     'service': 'my_service',
         #     'passfile': '.my_pgpass',
         # },
-        'NAME': 'django_app',
+        'NAME': 'pfeInshaAllah',
         'USER': 'postgres',
         'PASSWORD': 'pgsql',
         'HOST': 'localhost',
-        'PORT': '5432',   
+        'PORT': '5432',
     }
 }
 
@@ -129,3 +135,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_CHARSET = 'ascii'
+AUTH_USER_MODEL = 'accounts.Researcher'
