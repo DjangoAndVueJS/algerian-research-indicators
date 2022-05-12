@@ -1,0 +1,24 @@
+:root {
+  --light-dark-mode: #fff;
+  --light-dark-text: #213457;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--light-dark-mode);
+  font-family: InterLight;
+  font-weight: 500;
+  /* color: var(--light-dark-text); */
+}
+#app {
+  font-family: InterRegular, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* color: #2c3e50; */
+}
