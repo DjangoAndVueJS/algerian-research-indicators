@@ -1,0 +1,23 @@
+// Fonts
+@font-face {
+  font-family: InterExtraBold;
+  src: url("@/assets/fonts/Inter/static/Inter-ExtraBold.ttf");
+}
+@font-face {
+  font-family: InterLight;
+  src: url("@/assets/fonts/Inter/static/Inter-Light.ttf");
+}
+@font-face {
+  font-family: InterRegular;
+  src: url("@/assets/fonts/Inter/static/Inter-Regular.ttf");
+}
+
+@mixin flex($justify-content) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+}
+
+// colors
+$text-hover-green: #42b883;
+$nav-bar-height: 55px;
