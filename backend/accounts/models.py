@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # For the Custom user
-from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 # to specify a range
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -43,14 +43,13 @@ class ResearcherUserManager(BaseUserManager):
             raise ValueError("Superuser must be is_superuser")
         return self.create_user(full_name, email, password, **other_fields)
 
+
 # custom user
-
-
-class Researcher(AbstractBaseUser):
+class Researcher(AbstractBaseUser, PermissionsMixin):
     """
     The user profile of a researcher 
     """
-    # joined = models.DateTimeField(auto_now_add=True)
+    joined = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=150, unique=True)
     email = models.EmailField(_('email adress'), unique=True)
     speciality = models.CharField(max_length=150, blank=True)
@@ -59,7 +58,7 @@ class Researcher(AbstractBaseUser):
     linkedin_account = models.URLField(blank=True)
     google_scholar_account = models.URLField(blank=True)
 
-# Relational Relationship Database
+# Relationship between Database tables
     # Location --> Wilaya : A location table
     location = models.ForeignKey(
         'Location', on_delete=models.SET_NULL, null=True
@@ -79,14 +78,13 @@ class Researcher(AbstractBaseUser):
 
     class Meta:
         ordering = ['joined']
-        pass
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.full_name
 
 
 class Location(models.Model):
-    state_name = models.CharField(max_length=15)
+    state_name = models.CharField(max_length=30)
     state_number = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(58)]
     )
