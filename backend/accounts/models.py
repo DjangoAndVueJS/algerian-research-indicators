@@ -29,6 +29,7 @@ class ResearcherUserManager(BaseUserManager):
         """
         Superuser(admin)
         """
+        # this kind of code is for testing purpose
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_active', True)
         other_fields.setdefault('is_superuser', True)
