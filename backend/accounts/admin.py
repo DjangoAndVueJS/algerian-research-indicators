@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Researcher, Location
+from . import models
 # Register your models here.
-admin.site.register(Researcher)
-admin.site.register(Location)
+admin.site.register(models.Researcher)
+admin.site.register(models.Location)
+admin.site.register(models.Etablisment)
+admin.site.register(models.Division)
+admin.site.register(models.Laboratoire)
+admin.site.register(models.Equipe)
+admin.site.register(models.Directions)

@@ -1,11 +1,12 @@
 # For translation purpose
+from email.policy import default
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # For the Custom user
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 # to specify a range
-from django.core.validators import MinValueValidator, MaxValueValidator
+# from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class ResearcherUserManager(BaseUserManager):
@@ -13,19 +14,20 @@ class ResearcherUserManager(BaseUserManager):
     The Manager of the user(Researcher)
     """
 
-    def create_user(self, full_name, email, password=None, **other_fields):
+    def create_user(self, first_name, last_name, google_scholar_account, email, password=None, **other_fields):
         """
         Simple user
         """
         if not email:
             raise ValueError(_("the email must be set "))
         email = self.normalize_email(email)
-        user = self.model(email=email, full_name=full_name, **other_fields)
+        user = self.model(email=email, first_name=first_name, last_name=last_name,
+                          google_scholar_account=google_scholar_account, **other_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, full_name, email, password=None, **other_fields):
+    def create_superuser(self, first_name, last_name, google_scholar_account, email, password=None, **other_fields):
         """
         Superuser(admin)
         """
@@ -42,7 +44,7 @@ class ResearcherUserManager(BaseUserManager):
 
         if other_fields.get('is_superuser') is not True:
             raise ValueError("Superuser must be is_superuser")
-        return self.create_user(full_name, email, password, **other_fields)
+        return self.create_user(first_name, last_name, google_scholar_account, email, password, **other_fields)
 
 
 # custom user
@@ -50,21 +52,34 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     """
     The user profile of a researcher 
     """
-    joined = models.DateTimeField(auto_now_add=True)
-    full_name = models.CharField(max_length=150, unique=True)
+    # attributes
+    first_name = models.CharField(max_length=150, default='')
+    last_name = models.CharField(max_length=150, default='')
     email = models.EmailField(_('email adress'), unique=True)
     speciality = models.CharField(max_length=150, blank=True)
     grade = models.CharField(max_length=200, blank=True)
     twitter_account = models.URLField(blank=True)
     linkedin_account = models.URLField(blank=True)
     google_scholar_account = models.URLField(blank=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
-# Relationship between Database tables
+    image = models.ImageField(blank=True)
+
+    # Relationship between Database tables
     # Location --> Wilaya : A location table
-    location = models.ForeignKey(
-        'Location', on_delete=models.SET_NULL, null=True
+    location_researchers = models.ForeignKey(
+        'Location', on_delete=models.SET_NULL, null=True, blank=True
     )
-
+    etablisment_researchers = models.ForeignKey(
+        'Etablisment', on_delete=models.SET_NULL, null=True, blank=True)
+    division_researchers = models.ForeignKey(
+        'Division', on_delete=models.SET_NULL, null=True, blank=True)
+    laboratoire_researchers = models.ForeignKey(
+        'Laboratoire', on_delete=models.SET_NULL, null=True, blank=True)
+    equipe_researchers = models.ForeignKey(
+        'Equipe', on_delete=models.SET_NULL, null=True, blank=True)
+    directions_researchers = models.ForeignKey(
+        'Directions', on_delete=models.SET_NULL, null=True, blank=True)
     # affiliations = models.CharField(max_length=150)
 
     # interests
@@ -75,20 +90,82 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     objects = ResearcherUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['full_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'google_scholar_account']
 
     class Meta:
-        ordering = ['joined']
+        ordering = ['date_joined']
 
+    # Researche : YAHIA Ilyes
     def __str__(self) -> str:
-        return self.full_name
+        return " ".join(["Researcher :", self.last_name.upper(), self.first_name.capitalize()])
+
+    def get_username(self) -> str:
+        return super().get_username()
 
 
 class Location(models.Model):
+    id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=30)
-    state_number = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(58)]
-    )
+    # validators=[MinValueValidator(1), MaxValueValidator(58)],
 
     def __str__(self) -> str:
         return self.state_name
+
+
+class Etablisment(models.Model):
+    nom = models.CharField(max_length=200, default='')
+    logo = models.ImageField(null=True, blank=True)
+
+    location = models.ForeignKey(
+        'Location', on_delete=models.CASCADE, null=True)
+    chef_etablisement = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True)
+    directions = models.ForeignKey(
+        'Directions', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.nom
+
+
+class Division(models.Model):
+    nom = models.CharField(max_length=200, default='')
+
+    # relationshi
+    etablisment = models.ForeignKey(
+        'Etablisment', on_delete=models.CASCADE, null=True)
+    chef_div = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.nom
+
+
+class Laboratoire(models.Model):
+    nom = models.CharField(max_length=200)
+    # relationship
+    division = models.ForeignKey(
+        'Division', on_delete=models.CASCADE, null=True)
+    chef_labo = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.nom
+
+
+class Equipe(models.Model):
+    nom = models.CharField(max_length=200)
+
+    # Relationship
+    laboratoire = models.ForeignKey(
+        'Laboratoire', on_delete=models.CASCADE, null=True)
+    chef_equipe = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.nom
+
+
+class Directions(models.Model):
+    nom = models.CharField(max_length=150, )
+    chef_direction = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True)
