@@ -58,12 +58,14 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email adress'), unique=True)
     speciality = models.CharField(max_length=150, blank=True)
     grade = models.CharField(max_length=200, blank=True)
+
+    # extra info 
+    #     
+    image = models.ImageField(blank=True, upload_to='user_pic')
     twitter_account = models.URLField(blank=True)
     linkedin_account = models.URLField(blank=True)
     google_scholar_account = models.URLField(blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
-
-    image = models.ImageField(blank=True)
 
     # Relationship between Database tables
     # Location --> Wilaya : A location table
