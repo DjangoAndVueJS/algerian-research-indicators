@@ -110,7 +110,6 @@
   padding: 0 32px;
   background: #f1f1f1;
   font-size: 13px;
-
   .links {
     color: var(--light-dark-text);
     margin: 13px;
