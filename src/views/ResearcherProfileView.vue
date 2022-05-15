@@ -16,7 +16,7 @@ export default {
     const loadProfiles = async () => {
       try {
         const res = await locationApi.getLocation();
-        profiles.value = res.data[0].id;
+        profiles.value = res.data;
         console.log(profiles.value);
       } catch (err) {
         console.log(err);

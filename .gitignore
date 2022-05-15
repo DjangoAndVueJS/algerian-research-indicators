@@ -3,6 +3,8 @@ node_modules
 .rapport
 backend/.data
 backend/.pgpass
+backend/api/migrations
+backend/accounts/migrations
 /dist
 
 
