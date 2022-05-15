@@ -8,10 +8,10 @@
 </template>
 <script>
 import TheNavigation from "@/components/TheNavigation.vue";
-
+import ResearcherProfileView from "@/views/ResearcherProfileView.vue";
 export default {
   setup() {},
-  components: { TheNavigation },
+  components: { TheNavigation, ResearcherProfileView },
   methods: {},
 };
 </script>
