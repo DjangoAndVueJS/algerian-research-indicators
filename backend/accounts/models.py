@@ -59,8 +59,8 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     speciality = models.CharField(max_length=150, blank=True)
     grade = models.CharField(max_length=200, blank=True)
 
-    # extra info 
-    #     
+    # extra info
+    #
     image = models.ImageField(blank=True, upload_to='user_pic')
     twitter_account = models.URLField(blank=True)
     linkedin_account = models.URLField(blank=True)
@@ -86,6 +86,8 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
 
     # interests
 
+    # roles
+    # is_team_leader , is_division
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
@@ -114,10 +116,22 @@ class Location(models.Model):
         return self.state_name
 
 
+# tutelle --> MESRS
+
+#  Les etablisements de le MESRS (le ministre Abdelbaqi Benziane)
+# Établissements publics sous tutelle
+ # avec une seule Organisation mère
+    # Ministère de l'Enseignement supérieur et de la Recherche scientifique
+    # Affiliation
+    # Ministère de l'enseignement supérieur et de la recherche scientifique
 class Etablisment(models.Model):
     nom = models.CharField(max_length=200, default='')
     logo = models.ImageField(null=True, blank=True)
+    # Type
 
+    domaine_activite = models.CharField(max_length=200, blank=True)
+    sites_web = models.URLField(blank=True)
+    # Relations
     location = models.ForeignKey(
         'Location', on_delete=models.CASCADE, null=True)
     chef_etablisement = models.OneToOneField(
@@ -167,6 +181,7 @@ class Equipe(models.Model):
         return self.nom
 
 
+# DGRSD
 class Directions(models.Model):
     nom = models.CharField(max_length=150, )
     chef_direction = models.OneToOneField(
