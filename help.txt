@@ -1,0 +1,40 @@
+<!-- only user role ?
+        if chef div {
+          see all labos
+          and teams in evry labo
+        }
+        if chef labo {
+          for all labo teams
+            see all researchers in each lab
+            can edit researchers
+            can remove teams
+        }
+        if chef team{
+          see team researchers
+          can remove/edit
+          can add
+        }
+        Equipe Dash/Team dashboard
+        Tasks
+        -->
+        <!-- Settings/All users -->
+        <!--
+        Chats
+        Settings
+        Log out
+        User Profile
+        Light/Dark mode  -->
+
+
+
+
+Toggle theme
+// ToggleTheme() {
+//   let root = document.documentElement;
+//   if (root.style.getPropertyValue("--light-dark-mode") === "#000") {
+//     root.style.setProperty("--light-dark-mode", "#fff");
+//   } else {
+//     root.style.setProperty("--light-dark-mode", "#000");
+//   }
+//   // if(this.$refs.toggle.style.)
+// },

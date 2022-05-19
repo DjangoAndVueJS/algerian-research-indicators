@@ -8,17 +8,13 @@
   box-sizing: border-box;
   text-decoration: none;
 }
-body {
-  margin: 0;
-  padding: 0;
-  background: var(--light-dark-mode);
-  font-family: InterLight;
-  font-weight: 500;
-  /* color: var(--light-dark-text); */
-}
+
 #app {
-  font-family: InterRegular, sans-serif;
+  /* font-family: InterRegular, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* color: #2c3e50; */
+  color: #2c3e50;
+  /* overflow-x: hidden; */
+  position: relative;
+  right: 0;
 }

@@ -30,4 +30,9 @@ npm run lint
 
 ### Customize configuration
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### To Do List
+
+- [ ] Full multiple user nav bar
+- [ ] all multiple user pages types
+- [ ] connect to the backend
+<!-- See [Configuration Reference](https://cli.vuejs.org/config/). -->

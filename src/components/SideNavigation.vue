@@ -1,32 +1,39 @@
 <template>
-  <nav>
-    <router-link class="links" to="/">Home</router-link> |
-    <router-link class="links" to="/about">About</router-link>
-    <button ref="toggle" @click="ToggleTheme">Switch mode</button>
-  </nav>
+  <aside>
+    <nav>
+      <router-link class="links" to="/">Home</router-link>
+      <router-link class="links" to="/">Home</router-link>
+      <h5>Dashboard</h5>
+      <h5>Settings</h5>
+      <router-link to="/user/profile">Profile</router-link>
+    </nav>
+  </aside>
 </template>
 <style lang="scss" scoped>
-nav {
-  display: flex;
-  background: red;
-  .links:hover {
-    background: black;
-    color: white;
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 230px;
+  transition: 0.3s ease;
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    .links {
+      text-align: center;
+      margin: 12px;
+    }
+    h5 {
+      border-top: 2px solid #000;
+      margin: 12px 5px;
+      text-align: center;
+      color: grey;
+    }
   }
 }
 </style>
-<script>
-export default {
-  methods: {
-    // ToggleTheme() {
-    //   let root = document.documentElement;
-    //   if (root.style.getPropertyValue("--light-dark-mode") === "#000") {
-    //     root.style.setProperty("--light-dark-mode", "#fff");
-    //   } else {
-    //     root.style.setProperty("--light-dark-mode", "#000");
-    //   }
-    //   // if(this.$refs.toggle.style.)
-    // },
-  },
-};
-</script>
+<script setup></script>

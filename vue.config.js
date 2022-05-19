@@ -5,7 +5,8 @@ module.exports = defineConfig({
     loaderOptions: {
       sass: {
         additionalData: `
-        @import  '@/assets/_shared.scss';
+        @import  '@/assets/styles/_shared.scss';
+        @import  '@/assets/styles/_colors.scss';
         @import "@/../public/main.css";
         `,
       },

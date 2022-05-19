@@ -1,29 +1,40 @@
 <template>
-  <header>
-    <TheNavigation />
-  </header>
-  <div class="appContent">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 <script>
 import TheNavigation from "@/components/TheNavigation.vue";
-import ResearcherProfileView from "@/views/ResearcherProfileView.vue";
 export default {
   setup() {},
-  components: { TheNavigation, ResearcherProfileView },
+  components: { TheNavigation },
   methods: {},
 };
 </script>
 <style lang="scss">
-#app {
-  min-height: 100vh;
-}
-header {
-  width: 100%;
-  position: fixed;
-}
-.appContent {
-  padding-top: 55px;
+body {
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    height: 8px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar:hover {
+    background-color: #e9e9e9;
+    border: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #798892;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 </style>
