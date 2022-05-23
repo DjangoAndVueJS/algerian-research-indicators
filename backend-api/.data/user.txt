@@ -1,0 +1,4 @@
+"email","first_name","last_name","grade","speciality","google_scholar_account","password"
+
+"haliane@mail.cerist.dz","ALIANE","Hassina" ,"M.R.B" , "Natural Language Processing", 
+"https://scholar.google.com/citations?user=VOkaVCMAAAAJ&hl=en","RLt5idBGWjM8mQ7z"

@@ -438,12 +438,10 @@ def CherList_equipe(request, pk):  # pk represent l'id de l'equipe (rest a test)
     serializer = serializers.CherSerializer(researchers, many=True)
     return Response(serializer.data)
 
+
 # afficher les chercheur d'un laboratoire
-
-
 @api_view(['GET'])
 def CherList_labo(request, pk):
-
     inter = accounts_models.Equipe.objects.filter(laboratoire=pk)
     researchers = accounts_models.Researcher.objects.none()
     inter2 = []

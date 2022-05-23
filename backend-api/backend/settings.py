@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     # django PIP modules
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'bootstrap5',
 
     # Apps
     'accounts',
@@ -50,10 +53,20 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
-}
 
+}
+# DJOSER = {
+#     'SERIALIZERS': {
+#         'user': 'api.serializers.ResearcherCreateSerializer',
+#     }
+# }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -97,7 +110,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

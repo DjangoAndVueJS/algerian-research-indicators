@@ -27,11 +27,9 @@ urlpatterns = [
 
     # Apps
     path('accounts/', include('accounts.urls')),
-
     # api Version1
     path('api/v1/', include('api.urls')),
-    
-    #auth
+    # Third party apps
     path('api-auth/', include('rest_framework.urls')),
 
 
