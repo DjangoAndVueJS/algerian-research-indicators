@@ -1,0 +1,25 @@
+@import "@/assets/styles/_shared.scss";
+@import "@/assets/styles/sidebar.scss";
+@import "@/assets/styles/auth.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@300;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --black-mode-color: #121212;
+  --item-color: #3cc68a;
+}
+li,
+a {
+  text-decoration: none;
+}
+
+.userHome.is_open .content {
+  left: 246px;
+  transition: all 0.4s ease;
+}

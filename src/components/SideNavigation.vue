@@ -1,39 +1,27 @@
 <template>
-  <aside>
-    <nav>
-      <router-link class="links" to="/">Home</router-link>
-      <router-link class="links" to="/">Home</router-link>
-      <h5>Dashboard</h5>
+  <aside class="sidebar">
+    <nav class="nav-apps">
+      <router-link class="links" :to="{ name: 'Dashboard' }">
+        <i class="bx bxs-dashboard"></i>
+        <span class="router-tags tooltip">Dashboard</span>
+      </router-link>
+      <h5>Pages</h5>
+      <router-link class="links" :to="{ name: 'TeamMember' }">
+        <i class="bx bx-group"></i>
+        <span class="router-tags tooltip">Team</span>
+      </router-link>
       <h5>Settings</h5>
-      <router-link to="/user/profile">Profile</router-link>
+
+      <router-link class="links" :to="{ name: 'UserProfile' }">
+        <i class="bx bx-group"></i>
+        <span class="router-tags tooltip">Profile</span>
+      </router-link>
     </nav>
   </aside>
 </template>
-<style lang="scss" scoped>
-aside {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 230px;
-  transition: 0.3s ease;
-  nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    .links {
-      text-align: center;
-      margin: 12px;
-    }
-    h5 {
-      border-top: 2px solid #000;
-      margin: 12px 5px;
-      text-align: center;
-      color: grey;
-    }
-  }
-}
+<style lang="scss">
+@import "@/assets/styles/_global.scss";
 </style>
-<script setup></script>
+<script setup>
+import toggleMenu from "@/views/Clients/UserHomeView.vue";
+</script>

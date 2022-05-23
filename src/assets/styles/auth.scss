@@ -1,0 +1,24 @@
+.forms-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  // .signup-form {
+  //   position: absolute;
+  //   right: 0;
+  // }
+  div.signup-form,
+  div.login-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// .forms-container.is_user .signup-form {
+//   visibility: hidden;
+// }
+// .forms-container.is_not_user .login-form {
+//   visibility: hidden;
+// }

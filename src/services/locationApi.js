@@ -1,7 +1,7 @@
-import api from "./api.js";
+import appApi from "./api.js";
 
 export default {
   getLocation() {
-    return api().get("/location-list");
+    return appApi.get("/location-list");
   },
 };

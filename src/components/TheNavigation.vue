@@ -117,22 +117,20 @@
     color: $text-hover-green;
   }
   .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between, center);
     margin: 0 auto;
     max-width: 100%;
     .app-title {
-      @include flex(center);
+      @include flex(center, center);
       width: $nav-bar-height;
       height: $nav-bar-height;
     }
     .content {
-      @include flex(flex-end);
+      @include flex(flex-end, center);
       flex-grow: 1;
       height: 100%;
       nav {
-        @include flex(center);
+        @include flex(center, center);
         height: $nav-bar-height;
         flex-grow: 0.5;
       }

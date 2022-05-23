@@ -12,12 +12,16 @@
   src: url("@/assets/fonts/Inter/static/Inter-Regular.ttf");
 }
 
-@mixin flex($justify-content) {
+@mixin flex($justify-content, $align-items) {
   display: flex;
   justify-content: $justify-content;
-  align-items: center;
+  align-items: $align-items;
 }
 
 // colors
 $text-hover-green: #42b883;
 $nav-bar-height: 55px;
+
+a {
+  color: inherit;
+}

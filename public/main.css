@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --light-dark-mode: #fff;
   --light-dark-text: #213457;
@@ -10,11 +14,11 @@
 }
 
 #app {
-  /* font-family: InterRegular, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  /* overflow-x: hidden; */
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   right: 0;
+  bottom: 0;
 }
